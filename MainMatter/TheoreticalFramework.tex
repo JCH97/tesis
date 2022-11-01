@@ -1,6 +1,9 @@
 \chapter{Enfoque de solución}
 
-En el capítulo se pretende hacer alusión a las cuestiones relacionadas con la propuesta de software que se ofrece, ofreciendo definiciones, conceptos, gráficos y demás aspectos que se hagan necesarios para lograr una adecuada comprensión de la implementación realizada.
+En el capítulo se pretende hacer alusión a las cuestiones relacionadas con la propuesta de software que se ofrece, brindando definiciones, conceptos, gráficos y demás aspectos que se hagan necesarios para lograr una adecuada comprensión de la implementación realizada.
+
+Se ofrece una solución lo más simple posible, pero que a la vez cubra todas las necesidades y pueda manejar de la manera más adecuada todos los casos de uso que se presenten. Para el desarrollo de la aplicación se emplea un enfoque DDD (Domain Driven Design) y el uso del patrón CQRS (Command and Query Responsability Segregation); en el próximo capítulo (\ref{cap:implementation_details}) se ofrecerá una descripción detallada de tales conceptos así como la razón de la elección.
+
 
 \section{Entidades del sistema}
 
@@ -142,7 +145,8 @@ Ejemplos de grupos de condiciones:
 \end{itemize}
 
 \paragraph{Intervalo.}
-Ofrece una forma de obtener una separación del  conjunto de turnos en subconjuntos, cada uno conteniendo los turnos correspondientes a un período de tiempo diferente, en cada caso de tamaño \textit{intervalo}, salvo, quizás, el último, en caso de que el curso no pueda ser dividido exactamente en un número entero de intervalos de tamaño \textit{intervalo}. El objetivo detrás de esta separación del conjuto de turnos en intervalos, en segregar aún más la evaluación; pues, por ejemplo, supogamos que estamos analizando una restricción sobre $X$ y que: $\exists y \in X $ tal que para $y$ la restricción se incumple, entonces resultaría un poco antiintuitivo decir que la restricción se incumple, solo porque fallara en un turno, por ello si consideramos que $\text{interval} = 7$ (análisis semanal), entonces el turno entraría solo en una semana de las analizadas y por tanto la restricción no se marcaría en su totalidad como incumplida, lo que influiría positivamente en la felicidad del sistema.
+Ofrece una forma de obtener una separación del  conjunto de turnos en subconjuntos, cada uno conteniendo los turnos correspondientes a un período de tiempo diferente, en cada caso de tamaño \textit{intervalo}, salvo, quizás, el último, en caso de que el curso no pueda ser dividido exactamente en un número 
+entero de intervalos de tamaño \textit{intervalo}. El objetivo detrás de esta separación del conjuto de turnos en intervalos, en segregar aún más la evaluación; pues, por ejemplo, supogamos que estamos analizando una restricción sobre $X$ y que: $\exists y \in X $ tal que para $y$ la restricción se incumple, entonces resultaría un poco antiintuitivo decir que la restricción se incumple, solo porque fallara en un turno, por ello si consideramos que $\text{interval} = 7$ (análisis semanal), entonces el turno entraría solo en una semana de las analizadas y por tanto la restricción no se marcaría en su totalidad como incumplida, lo que influiría positivamente en la felicidad del sistema.
 
 \paragraph{Prioridad.}
 \label{def:priority}
@@ -167,13 +171,16 @@ El conjuto de campos definidos por cada tipo de restricción varía en dependenc
 
 Es posible manejar o declarar diversos timpos de restricciones, dichos tipos ya fueron enunciados en las secciones previas (\ref{state_of_art:restrictions}) de este documento.
 
-\paragraph{Restricción de requerimiento de cuenta simple.}  Esta restricción se refiere al número de turnos que han satisfecho las  condiciones fijadas inicialmente. El usuario debe configurar el operador de comparación \textit{O} a aplicar y el valor \textit{V} con el cual comparar. La restricción se cumple si la cantidad de turnos que satisfacen las condiciones mantiene una relación \textit{O} con \textit{V}. El valor de \textit{V} puede ser numérico, porcentual o bien fraccionario  con respecto al total de turnos que pasan la etapa de las condiciones.
+\paragraph{Restricción de requerimiento de cuenta simple.}  Esta restricción se refiere al número de turnos que han satisfecho las 
+ condiciones fijadas inicialmente. El usuario debe configurar el operador de comparación \textit{O} a aplicar y el valor \textit{V} con el cual comparar. La restricción se cumple si la cantidad de turnos que satisfacen las condiciones mantiene una relación \textit{O} con \textit{V}. El valor de \textit{V} puede ser numérico, porcentual o bien fraccionario  con respecto al total de turnos que pasan la etapa de las condiciones.
 
-\paragraph{Restricción de requerimiento de cuenta de condiciones.} Este requerimiento se refiere a qué parte del conjunto de turnos que ha  satisfecho las condiciones previas, cumple también un bloque de condiciones adicionales, y cuenta además con el operador de comparación \textit{O} a aplicar y el valor \textit{V} con el cual comparar. El requerimiento se cumple si la cantidad de turnos que satisfacen las condiciones iniciales y satisfacen simultáneamente otras que se han configurado, mantiene una relación \textit{O} con \textit{V}.
+\paragraph{Restricción de requerimiento de cuenta de condiciones.} Este requerimiento se refiere a qué parte del conjunto de turnos que ha 
+ satisfecho las condiciones previas, cumple también un bloque de condiciones adicionales, y cuenta además con el operador de comparación \textit{O} a aplicar y el valor \textit{V} con el cual comparar. El requerimiento se cumple si la cantidad de turnos que satisfacen las condiciones iniciales y satisfacen simultáneamente otras que se han configurado, mantiene una relación \textit{O} con \textit{V}.
 
 \paragraph{Restricción de requerimiento de distribución de atributos.} Este requerimiento se refiere a la cantidad de valores distintos que puede tomar determinado atributo en el conjunto de turnos que pasa la etapa de condiciones. El usuario configura, además del atributo \textit{A}, el operador de comparación \textit{O} y el valor \textit{V}. El requerimiento se cumple si la cantidad de valores que toma el atributo \textit{A} en el conjunto de turnos que cumple las condiciones previas mantiene una relación \textit{O} con  \textit{V}. En este caso el valor de \textit{V} debe ser numérico.
 
-\paragraph{Restricción de requerimiento relacional.} Este requerimiento se refiere a la relación que mantiene el conjunto de turnos que cumplen las condiciones previas con otro que cumple otro grupo de condiciones. En este caso se requiere que el usuario añada un segundo grupo de condiciones que filtrarán el segundo conjunto de turnos, un atributo \textit{A} y un operador booleano de conjuntos \textit{O} que define la relación entre los valores de \textit{A}en el primer conjunto y el segundo. El requerimiento se cumple si el conjunto de valores que toma \textit{A} en el primer conjunto de turnos mantiene una relación \textit{O} con el conjunto de valores que toma \textit{A} en el segundo conjunto.
+\paragraph{Restricción de requerimiento relacional.} Este requerimiento se refiere a la relación que mantiene el conjunto de turnos que cumplen las condiciones previas con otro que cumple otro grupo de condiciones. En este caso se requiere que el usuario añada un segundo grupo de condiciones que filtrarán el segundo conjunto de turnos, un atributo \textit{A} y un operador booleano de conjuntos \textit{O} que define la relación entre los valores de \textit{A}
+en el primer conjunto y el segundo. El requerimiento se cumple si el conjunto de valores que toma \textit{A} en el primer conjunto de turnos mantiene una relación \textit{O} con el conjunto de valores que toma \textit{A} en el segundo conjunto.
 
 \begin{figure}[h!]
 	\centering
