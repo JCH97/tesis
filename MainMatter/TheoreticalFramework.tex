@@ -202,6 +202,7 @@ en el primer conjunto y el segundo. El requerimiento se cumple si el conjunto de
 
 
 \subsection{Felicidad del sistema}
+\label{sec:happiness}
 
 La felicidad del sistema, es una cuestión a la que se ha venido haciendo alusión desde los capítulos anteriores. Este valor se obtiene a través de la felicidad relativa a cada uno de los profesores y su posterior procesamiento teniendo en cuenta una fórmula previamente definida.
 
@@ -244,7 +245,7 @@ Para calcular la felicidad total del sistema se emplea el cómputo de las felici
 
 \subsection{Arquitectura}
 
-El  sistema presentado, no es ni mucho menos sencillo, encierra una gran lógica de negocio y encontrar una forma aceptada de representar el mismo puede resultar, en muchos casos complejo.
+El  sistema presentado, no es ni mucho menos sencillo, encierra una gran lógica de negocio y encontrar una forma aceptada de representar el mismo puede resultar, en muchos casos, de gran dificultad.
 
 Para asegurar el correcto diseño de la aplicación, su posible extensión y adición de nuevas features (características), se hizo neceario utilizar una arquitectura, quizá un poco compleja, pero que permitiera enfocar todos los casos de uso que puedan surgir. 
 
@@ -252,7 +253,7 @@ DDD o Domain Driven Design (por su siglas en inglés) es un enfoque para el desa
 
 El diseño guiado por el dominio (DDD) propone un modelado basado en la realidad de negocio con relación a sus casos de uso. En el contexto de la creación de aplicaciones, DDD hace referencia a los problemas como dominios. Describe áreas con problemas independientes como contextos delimitados (cada contexto delimitado está correlacionado con un microservicio) y resalta un lenguaje común para hablar de dichos problemas. También sugiere muchos patrones y conceptos técnicos, como entidades de dominio con reglas de modelos enriquecidos (no modelos de dominio anémico), objetos de valor, agregados y raíz agregada (o entidad raíz) para admitir la implementación interna.\cite{ddd_dotnet}
 
-DDD es capaz de adaptarse a diversos tipos de arquitectura, para el software que nos envuelve se emplea una arquitectura por capas (Layered Architecture). Este enfoque es, sin lugar a dudas, una de los más empleados hora en día. Imponen una estructura y un acceso restringido a cada capa; dígase: dominio, aplicación, infraestructura y presentación. Las capas surgen para garantizar la separación de las responsabilidades, en otras palabras: cada una se encarga de gestionar cosas específicas. Una capa superior puede acceder a las capas inferiores, pero a la inversa no es posible.
+DDD es capaz de adaptarse a diversos tipos de arquitectura, para el software que nos envuelve se emplea una arquitectura por capas (Layered Architecture). Este enfoque es, sin lugar a dudas, una de los más empleados hoy en día. Esta impone una estructura y un acceso restringido a cada capa; dígase: dominio, aplicación, infraestructura y presentación. Las capas surgen para garantizar la separación de las responsabilidades, en otras palabras: cada una se encarga de gestionar cosas específicas. Una capa superior puede acceder a las capas inferiores, pero a la inversa no es posible.
 
 Muchos autores consideran o relacionan este enfoque con Arquitectura Hexagonal (Hexagonal Architecture), también conocida como: Puertos y Adaptadores; donde los puertos son interfaces y los Adaptadores son las implementaciones de estas. A modo práctico, se puede entender como una aquitectura por capas donde el principo de Inversión de Dependencias fue aplicado, por lo que, la capa de dominio se vuelve la capa central del sistema y no "depende" de ninguna otra capa.
 
@@ -269,6 +270,16 @@ Muchos autores consideran o relacionan este enfoque con Arquitectura Hexagonal (
 	\caption{Domain Driven Design}
 	\label{fig:ddd}
 \end{figure}
+
+
+Los principios \textit{SOLID} abordados por Robert C. Martin (autor de diversos libros como Clean Code y Clean Arquitecture) se interaron seguir a través de toda la implementación. No resulta llamativo, comentar acerca de SOLID en este documento, solamente a modo de referencia se pretende mostrar los nombres detrás de SOLID.\cite{solid_medium}
+\begin{itemize}
+	\item \textbf{S}: Single-Responsibility Principle.
+	\item \textbf{O}: Open-Closed Principle.
+	\item \textbf{L}: Liskov Substitution Principle.
+	\item \textbf{I}: Interface Segregation Principle.
+	\item \textbf{D}: Dependency Inversion Principle.
+\end{itemize}
 
 
 
