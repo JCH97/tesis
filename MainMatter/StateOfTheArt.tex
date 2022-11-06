@@ -20,7 +20,7 @@ El ejemplo más concreto que se analizó antes de la creación del presente trab
 
 Otra herramienta que también llamo la atención fue \href{http://www.educaria.es/#horarios2}{Unit}\cite{Unit}. Este software confecciona automáticamente los horarios del colegio a partir de los criterios pedagógicos que se determinen en el centro. Propone al usuario una serie de alternativas diferentes sobre las que se pueden hacer cambios manuales. Incorpora además otras funcionalidades como la posibilidad de crear horas de entrada y recreos de los alumnos a horarios diferentes, rangos de horas en que los profesores deben impartir clases por contrato, horario óptimo de guardias, planificación de sustituciones o estadísticas, entre otras. Este generador de horarios está completamente integrado en la plataforma de gestión Alexia.\cite{Alexia}
 
-Otro sistema que resaltó entre los revisados fue \href{https://www.penalara.com/es/CU}{Peñalara GHC}\cite{Penalara_GHC}. Se trata de una aplicación que permite llevar a cabo la gestión completa de los horarios escolares teniendo en cuenta los requisitos académicos, pedagógicos y organizativos del centro. Se muestra como buen candidato para todo tipo de niveles e instituciones educativas, pues organiza de forma objetiva y mediante la elección de un perfil de usuario los horarios semanales. Tiene la capacidad de resolver cualquier problema de planificación de profesores, espacios, sesiones lectivas. Además, es posible acceder a los archivos del software a través de Internet así como exportar los horarios a gestores de calendarios.
+Otro sistema que resaltó entre los revisados fue \href{https://www.penalara.com/es/CU}{Peñalara GHC}.\cite{Penalara_GHC} Se trata de una aplicación que permite llevar a cabo la gestión completa de los horarios escolares teniendo en cuenta los requisitos académicos, pedagógicos y organizativos del centro. Se muestra como buen candidato para todo tipo de niveles e instituciones educativas, pues organiza de forma objetiva y mediante la elección de un perfil de usuario los horarios semanales. Tiene la capacidad de resolver cualquier problema de planificación de profesores, espacios, sesiones lectivas. Además, es posible acceder a los archivos del software a través de Internet así como exportar los horarios a gestores de calendarios.
 
 La principal cuestión que motivó el desarrollo de un sistema propio de la universidad y la no utilización de estas herramientas que ya existían fue la posibilidad de ofrecer un manejo de restricciones sobre todas las entidades del horario; restricciones que ofrecen un grado de \emph{felicidad} al ser evaluadas y permiten la apreciación por parte del creador del horario de que tan bueno resulta la distribución brindada a los turnos de clases; que viene siendo, en definitiva, el punto central de todas estas herramientas. 
 
@@ -59,14 +59,3 @@ En la implementación que se ofrece se manejan 4 tipos de restricciones fundamen
 	\item Restricción de requerimiento relacional.
 \end{itemize}
 En los capítulos siguientes se ofrecerá una explicación más detallada de todo lo relacionado con estas condiciones impuestas sobre el sistema así como la adecuada definición y formulación de todos los conceptos antes expuestos.
-
-\section{Tecnologías}
-
-Para la confección del sistema se analizaron diversos escenarios para considerar el que propiciara la obtención de un mejor producto y a la vez que se contara con los conocimientos suficientes en el área para obtener los mejores resultados. 
-
-El sistema está desarrollado en \textit{NestJS} (framework de NodeJS), usando \textit{VueJS} para el frontend y \textit{PostgreSQL} para el manejo de la base de datos. El lenguaje empleado para el backend fue TypeScript (\ref{lenguage}), mientras que en la aplicación visual se uso JavaScript.
-
-Docker también jugó su papel durante el desarrollo del software, puesto que todo el sistema se encuetra desplegado sobre esta herramienta.
-
-En el capítulo \ref{cap:implementation_details} dedicado a los detalles de implementación se ofrecerá una explicación más en detalles del porqué de la selección y las bondades que ofrecen las tecnologías empleadas.
-

@@ -4,8 +4,14 @@ En el capítulo se pretende hacer alusión a las cuestiones relacionadas con la 
 
 Se ofrece una solución lo más simple posible, pero que a la vez cubra todas las necesidades y pueda manejar de la manera más adecuada todos los casos de uso que se presenten. Para el desarrollo de la aplicación se emplea un enfoque DDD (Domain Driven Design) y el uso del patrón CQRS (Command and Query Responsability Segregation); en el próximo capítulo (\ref{cap:implementation_details}) se ofrecerá una descripción detallada de tales conceptos así como la razón de la elección.
 
-Si se decidiera describir el sistema en pocas palabras, se pudiera decir que el horario es una colección de turnos de clase y que un turno de clase está asociado a: un profesor, un local, una asignatura, un grupo, una fecha y un tipo (conferencia, clase práctica, laboratorio, etc); además de cada uno de estos elementos tiene sus propios atributos y relaciones entre ellos. Cada profesor puede definir restricciones sobre el sistema y el cumplimiento (o no de estas) se refleja en la felicidad del horario.
+Si se decidiera describir el sistema en pocas palabras (\ref{fig:horario}), se pudiera decir que el horario es una colección de turnos de clase y que un turno de clase está asociado a: un profesor, un local, una asignatura, un grupo, una fecha y un tipo (conferencia, clase práctica, laboratorio, etc); además de cada uno de estos elementos tiene sus propios atributos y relaciones entre ellos. Cada profesor puede definir restricciones sobre el sistema y el cumplimiento (o no de estas) se refleja en la felicidad del horario.
 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=1\linewidth]{images/Chapter 2/horario}
+	\caption{Representación del horario}
+	\label{fig:horario}
+\end{figure}
 
 El usa de esta herramienta y del sistema de horarios en general necesita de un fujo de trabajo que permita en cada momento contar con los datos necesarios para efectuar los pasos correspondientes.
 
@@ -34,7 +40,7 @@ Para lograr una mayor comprensión y garantizar por tanto que sea entendido el p
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=1\linewidth]{images/Chapter 2/department_relation}
+	\includegraphics[width=1\linewidth]{images/Chapter 3/univ_fac_carr_dep.png}
 	\caption{Relación entre Universidad, Facultad, Carrera y Departamento}
 	\label{fig:department_relation}
 \end{figure}
