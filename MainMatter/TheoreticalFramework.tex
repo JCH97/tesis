@@ -116,6 +116,7 @@ El manejo de turnos en serie nos crea una relación entre los mismos, o sea, los
 El sistema cuenta con una serie de filtros dedicados a obtener secciones del mismo. Los turnos de clase están adaptados, por tanto, a estos requerimientos. Se hace posible agregar filtros por tiempo (día-hora de inicio y finalización), así como por asignaturas, grupos, locales y tipos de clase. 
 
 \section{Manejo de restricciones}
+\label{sec:restrictions}
 
 El manejo y gestión de restricciones es un importante \textit{feature} ofrecido en el sistema. Cada profesor propone un conjunto de condiciones que se aplica a los turnos de clase, además de cada profesor se conoce la prioridad, así como la prioridad particular que le otorga a cada restricción. 
 Con el objectivo de expresar un concepto un poco más formal: 
@@ -201,7 +202,7 @@ en el primer conjunto y el segundo. El requerimiento se cumple si el conjunto de
 \end{figure}
 
 
-\subsection{Felicidad del sistema}
+\section{Felicidad del sistema}
 \label{sec:happiness}
 
 La felicidad del sistema, es una cuestión a la que se ha venido haciendo alusión desde los capítulos anteriores. Este valor se obtiene a través de la felicidad relativa a cada uno de los profesores y su posterior procesamiento teniendo en cuenta una fórmula previamente definida.
@@ -243,7 +244,7 @@ Para calcular la felicidad total del sistema se emplea el cómputo de las felici
 \end{itemize}
 
 
-\subsection{Arquitectura}
+\section{Arquitectura}
 
 El  sistema presentado, no es ni mucho menos sencillo, encierra una gran lógica de negocio y encontrar una forma aceptada de representar el mismo puede resultar, en muchos casos, de gran dificultad.
 
@@ -280,6 +281,8 @@ Los principios \textit{SOLID} abordados por Robert C. Martin (autor de diversos 
 	\item \textbf{I}: Interface Segregation Principle.
 	\item \textbf{D}: Dependency Inversion Principle.
 \end{itemize}
+
+\nocite{thesis_joel}
 
 
 
