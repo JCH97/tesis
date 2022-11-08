@@ -36,7 +36,32 @@ Para corroborar además el cumplimiento de estos aspectos, se realizó la creaci
 
 \section{Recomendaciones}
 
-Sobre la base del desarrollo obtenido, la experiencia adquirida, así como de los reclamos de los usuarios, se proponen algunas ideas como líneas fundamentales para el trabajo futuro.
+Usando como base el trabajo realizado, la experiencia previa acumulada y las opiniones de un grupo de usuarios acerca del tema que se discute se hace posible presentar una serie de recomendaciones o ideas que quizá puedan ser evaluadas en futuras tareas.
+
+\subsection{Mejoras tecnológicas}
+
+Una mejora sustancial que se podría aplicar a la implementación ofrecida pudiera ser, sin dudas, la utilización de \textit{GraphQL} \cite{GraphQL_doc} como forma de comunicación entre front y backend. La inserción de este lenguaje de consultas podría contribuir a que se ganara en performance, pues el frontend solo consumiría de la API los datos exactos que necesite en todo momento además de ofreceer la posibilidad de solicitar recursos anidados en la misma operación. Esto se refleja inmediatamente en una optimización de la red, reduciendo las cargas útiles de HTTP y el número de peticiones. 
+
+Una de las características que también resultaría de gran utilidad sería la inclusión de tests dentro de la aplicación. La realización de pruebas al software es considerado por muchos autores, como buenas prácticas a la hora del desarrollo y sin dudas las ventajas son alentadoras; por ejemplo: \cite{testing} 
+\begin{itemize}
+	\item La calidad de código mejora puesto que podemos detectar errores en una etapa más temprana de desarrollo y de forma más rápida.
+	\item Puedes trabajar de una forma más ágil, ya que facilita los cambios y favorece la integración.
+	\item Los propios test pueden funcionar como documentación y ejemplos.
+	\item Reduce el costo de mantenimiento del proyecto.
+	\item A través del desarrollo guiado por pruebas, TDD por sus siglas en inglés, se ofrece una mejora en el diseño del software.
+	\item Es posible detectar errores, antes de la puesta en producción, de nuevos cambios o implementaciones; que en un gran número de casos afectan funcionalidades realizadas previamente.
+\end{itemize}
+
+\subsection{Generación automática de horarios}
+
+Sin dudas una mejora que llamaría considerablemete la atención pudiera ser, la forma de incluir una generación automática del sistema de horarios, a partir de una previa definición de frecuencias por asignaturas y el manejo de restricciones, punto que se encuetra actualmente abordado dentro del sistema.
+
+Esta temática de la generación automática, fue previamente desarrollada como tema de tesis dentro de la Facultad de Matemática y Computación de la Universidad de La Habana y ponerlo en práctica aseguraría que se eliminara por completo el tiempo empleado por la persona encargada de la creación del horario; haciendo que la tarea resultara en extremo sencilla y que solo hiciera falta, en el peor de los casos, la intervención humana para quizá brindar soporte a la distribución ofrecida. 
+
+\subsection{Desarrollo de una aplicación móvil}
+
+La puesta en producción de una aplicación móvil para la visualización del horario gozaría de una aceptación considerable. Este tipo de aplicación haría posible que se garantizara un acceso más fácil al sistema  y que se mejorara aún más la experencia de usuario. Las notificaciones push son un ejemplo de ello, ya que estas proporcionan la información que se necesita, en el momento que se requiera. 
+
 
 
 
