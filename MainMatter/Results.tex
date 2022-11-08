@@ -4,26 +4,17 @@ Con el objetivo de garantizar que el lector esté más acorde con la tecnología
 
 A día de hoy se cuenta con muchas herramientas para desarrollar un software de este tipo. En esta ocasión se escogión una tecnología que ha alcanzado bastante auge en los últimos años. En las secciones siguientes se hará alusión a la misma así como al lenguaje empleado para el desarrollo.
 
-\section{Lenguaje de programación}
+\section{Tecnologías}
 Para este proyecto se utilizó el lenguaje TypeScript, auxiliándonos de NestJS (framework de NodeJS).
 
-\subsection{TypeScript}
 \label{lenguage}
 \cite{wiki_ts}
-TypeScript es un lenguaje de programación libre y de código abierto desarrollado y mantenido por Microsoft. Es un superconjunto de JavaScript, que esencialmente añade tipos estáticos y objetos basados en clases. Anders Hejlsberg, diseñador de C\# y creador de Delphi y Turbo Pascal, ha trabajado en el desarrollo de TypeScript. TypeScript es usado para desarrollar aplicaciones JavaScript que se ejecutarán tanto en el lado del cliente como del servidor.
-
-TypeScript extiende la sintáxis de JavaScript, por tanto cualquier código JavaScript existente debería  funcionar sin problemas. Está pensado para grandes proyectos, los cuáles a través de un compilador de TypeScript se traducen a código JavaScript original. 
-
-TypeScript soporta ficheros de definición que contengan información sobre los tipos de librerías JavaScript existentes; esto permite a otros programas usar los valores definidos en los ficheros como si fueran entidades TypeScript de tipado estático. El compilador de TypeScript está escrito asimismo en TypeScript. 
-
+TypeScript es un lenguaje de programación libre y de código abierto desarrollado y mantenido por Microsoft. Es un superconjunto de JavaScript, que esencialmente añade tipos estáticos y objetos basados en clases. Anders Hejlsberg, diseñador de C\# y creador de Delphi y Turbo Pascal, se considera el desarrollador del lenguaje. TypeScript es usado para desarrollar aplicaciones JavaScript que se ejecutarán tanto en el lado del cliente como del servidor. El lenguaje extiende la sintáxis de JavaScript, por tanto cualquier código JavaScript existente debería  funcionar sin problemas. Está pensado para grandes proyectos, los cuáles a través de un compilador de TypeScript se traducen a código JavaScript original. TypeScript soporta ficheros de definición que contengan información sobre los tipos de librerías JavaScript existentes; esto permite a otros programas usar los valores definidos en los ficheros como si fueran entidades TypeScript de tipado estático. El compilador de TypeScript está escrito asimismo en TypeScript. 
 
 El lenguaje fue publicado en octubre de 2012 , después de dos años de desarrollo por parte de la compañía y desde esa fecha ha tenido en general, buena aceptación por parte de todos lo que le mereció el mérito en 2020 como segundo lenguaje de programción más amado según la encuesta de Stack Overflow\cite{stack_overflow} 2020 Develop Survey.
 
-\subsection{NestJS}
 \cite{nestjs_doc}
-NestJS es un framework para construir eficientes y escalables aplicación del lado del servidor utilizando NodeJS. Posee soporte tanto para JavaScript como para TypeScript y combina elementos de Programación Orientada a Objetos (OOP, por sus siglas en inglés), Programación Funcional y Programación Funcional Reactiva. 
-
-Nest posee un robusto framework HTTP basado en \textit{Express} (definido por defecto) y opcionalmente se puede configurar además el uso \textit{Fastify} como alternativa a \textit{Express}.
+NestJS es un framework para construir eficientes y escalables aplicaciones del lado del servidor utilizando NodeJS. Posee soporte tanto para JavaScript como para TypeScript y combina elementos de Programación Orientada a Objetos (OOP, por sus siglas en inglés), Programación Funcional y Programación Funcional Reactiva. Nest posee un robusto framework HTTP basado en \textit{Express} (definido por defecto) y opcionalmente se puede configurar además el uso \textit{Fastify} como alternativa a \textit{Express}.
 
 Nest ofrece un nivel de abstracción superior al que normalmente encontramos en los demás frameworks de Node(Express/Fastify), pero también expone sus APIs directamente al desarrollador. Esto le ofrece a los programadores la libertad de emplear la mayoría de las aplicaciones de 3$^{ros}$ desarrolladas para esos otros ambientes.
 
@@ -37,11 +28,7 @@ Fue desarrollado por Kamil Mysliwiec, desarrollador de Google; el lanzamiento de
 
 La idea detrás de la aplicación visual surge inspirada en un sistema desarrollado hace un par de años dentro de la facultad por un grupo de estudiantes y que se presentó como proyecto a la jornada científica de ese curso. 
 
-Se ofrece un sistema desarrollado en VueJS y que pretende seguir las buenas prácticas de desarrollo de frontend. Está escrito en JavaScript.
-
-El sistema posee un conjunto de vistas dedicadas a manejar todas las tareas administrativas referentes al software; dígase: creación de profesores, grupos, semestres, asignaturas y demás cuestiones referentes al centro educacional. 
-
-Solamente para el usuario con los permisos adecuados están habilitadas tales características, es decir el usuario administrador es el único que puede realizar modificaciones internas dentro del sistema.
+Se ofrece un sistema desarrollado en VueJS y que pretende seguir las buenas prácticas de desarrollo de frontend. Está escrito en JavaScript. El sistema posee un conjunto de vistas dedicadas a manejar todas las tareas administrativas referentes al software; dígase: creación de profesores, grupos, semestres, asignaturas y demás cuestiones referentes al centro educacional. Solamente para el usuario con los permisos adecuados están habilitadas tales características, es decir el usuario administrador es el único que puede realizar modificaciones internas dentro del sistema.
 
 En la página principal se definen 5 tipos de filtros que hacen posible una rápida interacción. Estos filtros se presentan útiles en un gran número de escenarios. Se muestra además, en la misma página, la opción de descargar el horario, la cual esta habilitada para cualquier tipo de usuarios. El número que se presenta en la parte superior izquierda es referente a la felicidad del sistema, aspecto que fue abordado en las secciones previas a este capítulo. (\ref{sec:happiness})
 
@@ -55,9 +42,9 @@ Haciendo clic encima del turno se obtine además una descripción detallada del 
 
 \section{Autenticación}
 
-La autenticación es una parte esencial en la mayoría de los sistemas y aplicaciones. Existen muchas formas y estrategias de manejar la misma. La autenticación dentro del sistema se maneja con un módulo independiente que posee todos los casos de uso y middlewares relacionados con tal aspecto. En esta ocasión el proceso se realiza por medio de JSON Web Token(JWT).
+La autenticación es una parte esencial en la mayoría de los sistemas y aplicaciones. Existen muchas formas y estrategias de manejar la misma. En el software que se presenta se pone en uso a través de un módulo independiente que posee todos los casos de uso y middlewares relacionados con tal aspecto. En esta ocasión el proceso se realiza por medio de JSON Web Token(JWT).
 
-JWT es un estándar de internet propuesto para la creación de firmas y/o encriptación (opcional), cuyo contenido es enviado en forma de cadena de texto de backend a frontend (y viceversa). Los tokens que se generan son firmados usando un protocolo de clave pública y clave privada. La forma de funcionamiento de JWT resalta por su simpleza; el servidor se encarga de generar un token que puede contener información referente al usuario autenticado (en la mayoría de los casos maneja los permisos del usuario, así como el ID). Este token es enviado del servidor al cliente y este último se encarga de almacenarlo en las cookies o el local storage, por solo mostrar dos ejemplos. Luego el cliente en cada una de las peticiones adjunta este token y de esa forma el servidor puede identificar correctamente al usuario que pretende acceder a los puntos de acceso definidos.\cite{jwt_wiki}
+JWT es un estándar de internet propuesto para la creación de firmas y/o encriptación (opcional), cuyo contenido es enviado en forma de cadena de texto de backend a frontend (y viceversa), comunmente llamado \textit{token}.
 
 Cuando se recibe una petición de login por parte del cliente, el servidor se encarga de comprobar que las credenciales son correctas y la respuesta del login, es entre otras cosas, el token al que se hace referencia en el párrafo anterior. Supongamos después que se hace otra petición cliente-servidor y que el token se adjunta de forma apropiada en las cabeceras de la misma, cuando la petición arriba al punto adecuado, el servidor se encarga de ejecutar un \textit{middleware} (función intermedia) que procesa el token y verifica que sea el correcto, si todo este proceso se ejecuta sin mayores contratiempos, entonces en el request de la petición a través del campo user (request.user) se puede acceder al usuario que está intentado realizar la acción. En otro caso se responde con un estado 401 lo que indica que el usuario no esta autorizado al acceder al recurso que intenta solicitar. 
 
@@ -143,9 +130,7 @@ Existen varias razones que hacen que PostgreSQL resulte llamativo y que, por tan
 
 \section{Docker} 
 
-Docker es una plataforma de código abierto para el desarrollo, manejo y ejecución de aplicaciones. Ofrece la ventaja de separar las aplicaciones de la infraestructura, por tal razón el despliegue de los sistemas se puede realizar relativamente rápido. Con el uso de docker  la infraestructura se maneja de la misma manera que se hace con las aplicaciones. Hablando de ventajas, las metodologías de docker para despliegue, integración y pruebas hacen que se reduzca significativamente el tiempo entre la escritura del código y el despliegue en producción del mismo. \cite{docker_dfn}
-
-Docker provee la habilidad de empaquetar y correr una aplicación en un ambiente aislado llamado \textit{contenedor}. Debido a este aislamiento y a la seguridad que ofrece se permite ejecutar varias aplicaciones simultaneamente en un servidor. Los contenedores son ligeros y contienen todo lo necesario para correr la aplicación, de esta forma, no es necesario preocuparse por lo que el serividor necesite instalar para su funcionamiento. Se puede compartir un contenedor mientras se está desarrollando  un proyecto y se garantiza que culaquiera que ejecute el mismo contenedor contendrá exactamente el mismo ambiente de trabajo que el desarrollador inicial.\cite{docker_dfn}
+Docker es una plataforma de código abierto para el desarrollo, manejo y ejecución de aplicaciones. Ofrece la ventaja de separar las aplicaciones de la infraestructura, por tal razón el despliegue de los sistemas se puede realizar relativamente rápido. Con el uso de docker  la infraestructura se maneja de la misma manera que se hace con las aplicaciones. Hablando de ventajas, las metodologías de docker para despliegue, integración y pruebas hacen que se reduzca significativamente el tiempo entre la escritura del código y el despliegue en producción del mismo. Además provee la habilidad de empaquetar y correr una aplicación en un ambiente aislado llamado \textit{contenedor}. Debido a este aislamiento y a la seguridad que ofrece se permite ejecutar varias aplicaciones simultaneamente en un servidor. Los contenedores son ligeros y contienen todo lo necesario para correr la aplicación, de esta forma, no es necesario preocuparse por lo que el serividor necesite instalar para su funcionamiento. Se puede compartir un contenedor mientras se está desarrollando  un proyecto y se garantiza que culaquiera que ejecute el mismo contenedor contendrá exactamente el mismo ambiente de trabajo que el desarrollador inicial.\cite{docker_dfn}
 
 El sistema que se ofrece se encuentra desarrollado completamente sobre docker, tanto el frontend (que se despliega sobre nginx) como el backend (que se despliega sobre node). Esta integración hará que resulte de gran facilidad el despliegue del software sobre cualquier red y que por tanto su pase a producción se realice sin mayores complicaciones. 
 
@@ -163,7 +148,7 @@ El uso de ngnix será descrito en la siguiente sección.
 
 Nginx server es un servidor web gratuito y de código abierto. Se ejecuta en sistemas operativos Linux/Unix de 64 bits y es ampliamente utilizado para sitios web de alto rendimiento debido a su arquitectura liviana en comparación con otros servidores de la misma clase.
 
-La herramienta fue incluida en este proyecto por medio de una imagen de Docker; e hizo posible que el frontend se desplegara a través de un servidor que se encargara de gestionar todos los temas de performance y manejo de peticiones referentes al front.
+La herramienta fue incluida en este proyecto por medio de una imagen de Docker; e hizo posible que el frontend se desplegara a través de un servidor que se encargara de gestionar todos los temas de performance y manejo de peticiones.
 
 Nginx fue lanzado oficialmente en octubre del 2004. El creador del software, Igor Sysoev, comenzó su proyecto en el 2002 como un intento de solucionar el problema C10k (reto de gestionar diez mil conexiones al mismo tiempo). Hoy en día, los servidores web tienen que manejar un número aún mas grande de conexiones. Por esa razón, Nginx ofrece una arquitectura asíncrona y controlada por eventos, característica que hace de él uno de los servidores más confiables para la velocidad y la escalabilidad. Muchos sitios web de alto tráfico usan el servicio, algunos de estos gigantes del internet son Google, Netflix, Adobe, Cloudflare, WordPress.com por solo mencionar algunos. \cite{nginx}
 

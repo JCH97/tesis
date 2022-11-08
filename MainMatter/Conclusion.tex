@@ -1,17 +1,53 @@
-\begin{conclusions}
-%	Se realizó un recorrido general por la historia del desarrollo matemático y filosófico de la causalidad. El problema recayó primeramente en manos de los filósofos y comenzó a despertar el interés de algunos matemáticos a principios de la época moderna. Sin embargo fue abandonado tempranamente dado que estos desviaron su atención hacia la estadística, área de la matemática que también daba sus primeros pasos por aquel entonces. La evasión de la causalidad por parte de los estadísticos condujo al surgimiento de numerosas paradojas y problemas intratables por la falta de las herramientas adecuadas para encararlos, herramientas que no podía proporcionar la visión frecuentista de la estadística. La historia de la concepción matemática de la causalidad tiene su punto de inflexión con la publicación de Sewall Wright de los diagramas de caminos. Posteriormente comenzaron a desarrollarse diversas teorías y modelos que explican la causalidad, con Reichenbach, Suppes, Granger y Pearl entre sus principales exponentes.
-%	
-%	Se expusieron los desarrollos de Judea Pearl en la teoría de la causalidad y los modelos gráficos probabilistas. Se repasó la teoría de la independencia condicional como base para el desarrollo de los modelos gráficos probabilistas. Se presentaron las redes bayesianas como un primer modelo capaz de realizar predicciones en las variables a partir de observaciones. Posteriormente se introdujo el modelo causal estructural de Pearl como modelo gráfico probabilista capaz de representar explícitamente las relaciones de causalidad entre variables y su relación con las redes bayesianas. A continuación se pasó a introducir las distintas modalidades de inferencia causal propias de un SCM. Primeramente se formalizó el concepto de intervención, definiendo el operador \textit{do} y resaltando sus diferencias con la observación pasiva. A continuación se vieron los principales métodos de inferencia causal para el cálculo de intervenciones: el criterio de la puerta trasera, el criterio de la puerta principal, el cálculo-do y la inferencia bayesiana. Luego se expuso la teoría relacionada con los contrafactuales, sus variantes determinista y no determinista y los principales métodos para calcularlos, haciendo especial hincapié en el método de las redes gemelas. Por último se expusieron dos aplicaciones de las intervenciones y los contrafactuales conocidos como atribución y mediación. La primera permite explicar el comportamiento de una variable a partir del de otras y la segunda, el análisis del efecto que ejerce una variable sobre otra a través de un mediador.
-%	
-%	Se desarrolló una implementación de los algoritmos de inferencia causal, utilizando la idea de la cirugía en el grafo para intervenir el modelo y el método de las redes gemelas para calcular los contrafactuales, conjuntamente con la idea de transformar el modelo a una red bayesiana para aplicar inferencia bayesiana y obtener la respuesta a la consulta deseada.
-%	
-%	Los algoritmos de inferencia causal se comportaron satisfactoriamente para modelos cuyos grafos son esparcidos y las variables toman una cantidad relativamente pequeña de valores. Sin embargo, cuando el número de nodos, estados y aristas del grafo causal crece notablemente, el tiempo de ejecución se ve comprometido, especialmente en el caso de los contrafactuales, en los cuales la inferencia es aplicada en un grafo que en el caso peor ocupa el doble de tamaño que el grafo original. La técnica de mezcla de nodos resultó ser útil para disminuir el costo computacional de calcular los contrafactuales.
-%	
-%	Además se desarrolló una interfaz visual destinada a usuarios no expertos en programación para la resolución de problemas de naturaleza causal.
-%	
-%	Por último se mostraron algunas aplicaciones de la teoría de la causalidad en las que puede ser utilizado el programa implementado.
-%	
-%	La causalidad ha demostrado ser una herramienta útil para complementar el procesamiento estadístico de los datos. Su uso permite la modelación y el entendimiento de procesos que la asociación no captura. Simular intervenciones a partir de datos recopilados, en vez de llevar a cabo la intervención en la práctica, permite no solo el ahorro de recursos, sino también conocer el resultado de intervenciones que serían imposibles o inviables de determinar experimentalmente.
-%	
-%	Para concluir, se debe resaltar que la simulación del pensamiento causal nos colocará un paso más cerca de simular el pensamiento humano. Dotar de razonamiento causal a las máquinas permitirá que estas adquieran capacidades distintivas del ser humano, como son planear acciones con antelación o aprender de los propios errores. Conforme surjan nuevas teorías que mejoren, extiendan y complementen las actuales y se desarrollen modelos más completos y realistas capaces de razonar casualmente, seremos capaces no solo de automatizar tareas complejas, sino además de entendernos mejor a nosotros mismos.	
-\end{conclusions}
+\chapter{Conclusiones}
+
+%\begin{conclusions}
+\section{Breve resumen del trabajo}
+
+En una primera aproximación a la descripción de la implementación ofrecida, se intenta brinadar una especie de marco histórico acerca del tema que nos envuelve; haciendo alusión en varias ocasiones a las motivaciones que llevaron al desarrollo de un software propio, para gestionar el horario dentro de la Facultad de Matemática y Computación de la Universidad de La Habana. Dichos aspectos motivacionales están claramente relacionados con las ventajas que traería la puesta en práctica de una aplicación con tales fines. 
+
+Los objetivos que se persiguen se encuentran descritos además, en las primeras secciones del documento, ya que resulta de notable importancia tenerlos claros para lograr obtener un resultado que cuente con la mayor calidad posible y que logre cubrir todos las necesidades y carencias de la facultad en este aspecto de la gestión del horario. 
+
+En el primer capítulo se plasmaron además una serie de convenciones y estilos para describir todas las figuras y gráficos que se muestran. Esto hace posible que se logre una mayor comprensión de todos los aspectos abordados dentro del documento y con ello garantizar que sea entendible por todo tipo de lectores, tanto expertos en el tema como usuarios comunes interesados en el mismo.
+
+El tema de la gestión de horarios para instituciones educacionales ha sido abordado por diversos autores; previo a la confección del software se realizó el análisis de las aplicaciones de mayor relevancia. En el capítulo 2 se exponen las conclusiones a las que se arribó luego del análisis, lo que contribuyó además a mostrar la utilidad de una aplicación propia que reflejara verdaderamente los intereses de la facultad.
+
+Uno de los temas más novedosas o de mayor relevancia fue el manejo de restricciones, así como la incoprarción del concepto de felicidad del sistema a través del cumplimiento (o no) de estas. Una restricción, conceptualmente, se compone de un conjunto de condiciones y otro de requerimientos.  Las restricciones no otorgan felicidad por sí solas a ninguna entidad del sistema, son solamente una plataforma para representar la relación entre condiciones y requerimientos.Una condición se compone por tres elementos: un atributo \textit{A} en primer lugar; y en función de este, un operador \textit{O} y un valor \textit{V}. A partir de varias condiciones es posible definir además, grupos de
+condiciones. 
+
+Por otro lado cada requerimiento está formado, entre otras cosas, por una serie de atributos base, dígase por ejemplo: la prioridad y el modificador temporal. El primero representa el nivel de felicidad que  le otorga al usuario - y posteriormente al sistema - el cumplimiento de este requerimiento; mientras que el segundo hace referencia al tiempo en el que será evaluado el cumplimiento de la restricción. Los métodos y fórmulas definidos para el cálculo de la felicidad, así como su respectiva explicación, se detallan también en este capítulo.
+
+Los próximos dos capítulos están relacionados con el enfoque de la solución ofrecido y los detalles de implementación. Para abordar el tema de los enfoques de solución se ofrece una descripción de cada una de las entidades del sistema, resaltando en secciones específicas las más importantes dentro de estas: turnos de clase y manejo de restricciones. En este capítulo se incluye también un diseño del modelo entidad-relación (MERX); que muestra como interactúan dichas entidades dentro de la base de datos. Debido a que el modelado del software es independiente del framework y lenguaje empleado, se ofrece también una descripción de la arquitectura y demás aspectos relacionados con la misma. 
+
+En el último capítulo se aborda todo lo referente a las tecnologías empleadas y la razón de esa selección. Existe una sección dedicada a la aplicación visual, así como aspectos relevantes para el proceso de autenticación, sistema de reportes, despliegue de la infraestructura a producción a través de docker y el manejo de los usuarios y permisos; estos últimos descritos a través de enteros, auxiliándonos del sistema binario. 
+
+\section{Cumplimiento de objetivos}
+
+Se considera que los objetivos expuestos en la primera sección del trabajo en cuestión fueron cumplidos. A fecha de la entrega de este documento se cuenta con una aplicación web, desarrollada en NestJS(backend) y VueJS(frontend) que satisface todas las necesidades y carencias de la Facultad de Matemática y Computación con respecto al uso del horario. 
+
+La aplicación se muestra lo suficientemente robusta como para albergar el manejo de todos los profesores, locales, grupos, asignaturas y demás aspectos relacionados con el funcionamiento interno de un centro educacional. Es capaz de identificar problemas de colisiones entre turnos, profesores y locales; pudiendo reaccionar en consecuencia y ofreciendo una respuesta visual al usuario. Así mismo cuenta con una serie de vistas que hacen posible la fácil interacción y que la experiencia de usuario, por tanto, se mejore considerablemente. Se integraron también una serie de filtros para garantizar que se pudiera visualizar en cualquier momento secciones específicas del horario; lo que proporciona, como es fácil notar, muchas bondades en el trabajo con el sistema, tanto para la persona encargada de crear el horario, como para el cliente que solo se propone consultar el mismo. 
+
+La generación de reportes en formato Excel, también se cubrió de manera satisdactoria. Es posible obtener en todo momento un archivo que se compone de una serie de páginas: una por cada grupo y una extra para la visualización de los locales. 
+
+El manejo de las condiciones de los profesores sobre el sistema, también se considera cumplido. En todo momento, el administrador puede consultar cuáles son las restricciones que están afectando la felicidad, por su no cumplimiento y actuar en consecuencias, garantizando la mayor comodidad para todos los trabajadores del centro. Por otra parte, a los profesores se les dió la potestad de definir, por ellos mismos, las restricciones y evitar con esto la necesidad de que un administrador las tenga que incorporar personalmente. 
+
+El sistema, es capaz de manejar la incorporación de varias facultades a la vez e incluso está diseñado para garantizar que se puedan manipular varias universidades al mismo tiempo, aunque es válido notar, que en la mayoría de los casos solo se va a interactuar con una. 
+
+Para corroborar además el cumplimiento de estos aspectos, se realizó la creación de un horario real dentro del sistema; el horario del 2$^{do}$ semestre del curso 2021-2022 de la facultad de Matemática y Computación de La Universidad de La Habana, fue el elegido para esto. 
+
+\section{Recomendaciones}
+
+Sobre la base del desarrollo obtenido, la experiencia adquirida, así como de los reclamos de los usuarios, se proponen algunas ideas como líneas fundamentales para el trabajo futuro.
+
+
+
+
+
+
+
+
+
+
+
+
+
+%\end{conclusions}

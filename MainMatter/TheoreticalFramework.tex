@@ -74,8 +74,7 @@ Para lograr una mayor comprensión y garantizar por tanto que sea entendido el p
 
 \textbf{Usuarios}: Se encarga de gestionar todo lo referente a los usuarios dentro de la aplicación. Está permitido que cualquier usuario realice registro dentro de la misma, pero solamente el administrador del sistema puede determinar cuáles usuarios son profesores y por tanto, que posean un permiso específico de creación de restricciones. Para un usuario registrado sin permisos, solo es posible la visualización del sistema, cerrando toda forma de modificación o creación de nuevas entidades dentro del mismo. Un usuario puede estar relacionado, a lo sumo, con un profesor. 
 
-\textbf{Reportes}: Módulo que posibilita la obtención de un documento en formato \textit{Excel} que puede ser útil para la posterior distribución del horario, o para la revisión del mismo de manera off-line. El documento presenta una serie de páginas: una por cada grupo descrito en el horario y una extra que meneja una representación por locales, es decir, la disponibilidad de los mismos durante todo el semestre. En cada página se encuentra descrito el horario por semanas físicas y además se ofrece una leyenda con la descripción de los turnos de clase así la hora de comienzo y finalización de los mismos.\\\\
-
+\textbf{Reportes}: Módulo que posibilita la obtención de un documento en formato \textit{Excel} que puede ser útil para la posterior distribución del horario, o para la revisión del mismo de manera off-line. El documento presenta una serie de páginas: una por cada grupo descrito en el horario y una extra que meneja una representación por locales, es decir, la disponibilidad de los mismos durante todo el semestre. En cada página se encuentra descrito el horario por semanas físicas y además se ofrece una leyenda con la descripción de los turnos de clase así la hora de comienzo y finalización de los mismos.\\
 
 Cada entidad posee un conjunto de atributos base; por medio de la herencia se logra plasmar esto a la hora de realizar la implementación. 
 
@@ -93,6 +92,16 @@ Todas las entidades del sistema heredan de \texttt{DomainEntity}, que no es más
 
 
 \section{Modelo entidad-relación (MERX)}
+
+El siguiente modelo propone describir las relaciones existentes entre todas las entidades presentes en la base de datos. Para confeccionar el mismo se siguen las convenciones de estilo (\ref{sec:style_conventios}), abordadas en el capítulo anterior.
+
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=1\linewidth]{images/Chapter 2/MERX}
+	\caption{ Modelo entidad-relación }
+	\label{fig:merx}
+\end{figure}
 
 
 \section{Turno de Clase}
@@ -252,17 +261,13 @@ Para calcular la felicidad total del sistema se emplea el cómputo de las felici
 
 \section{Arquitectura}
 
-El  sistema presentado, no es ni mucho menos sencillo, encierra una gran lógica de negocio y encontrar una forma aceptada de representar el mismo puede resultar, en muchos casos, de gran dificultad.
+El  sistema presentado encierra una gran lógica de negocio y encontrar una forma aceptada de representar el mismo puede resultar, en muchos casos, de gran dificultad.
 
 Para asegurar el correcto diseño de la aplicación, su posible extensión y adición de nuevas features (características), se hizo neceario utilizar una arquitectura, quizá un poco compleja, pero que permitiera enfocar todos los casos de uso que puedan surgir. 
 
-DDD o Domain Driven Design (por su siglas en inglés) es un enfoque para el desarrollo de software con necesidades complejas mediante una profunda conexión entre la implementación y los conceptos del modelo y núcleo del negocio.\cite{ddd_wiki}
+DDD o Domain Driven Design (por su siglas en inglés) es un enfoque para el desarrollo de software con necesidades complejas mediante una profunda conexión entre la implementación y los conceptos del modelo y núcleo del negocio.\cite{ddd_wiki} El diseño guiado por el dominio (DDD) propone un modelado basado en la realidad de negocio con relación a sus casos de uso. En el contexto de la creación de aplicaciones, DDD hace referencia a los problemas como dominios. Describe áreas con problemas independientes como contextos delimitados (cada contexto delimitado está correlacionado con un microservicio) y resalta un lenguaje común para hablar de dichos problemas. También sugiere muchos patrones y conceptos técnicos, como entidades de dominio con reglas de modelos enriquecidos (no modelos de dominio anémico), objetos de valor, agregados y raíz agregada (o entidad raíz) para admitir la implementación interna.\cite{ddd_dotnet}
 
-El diseño guiado por el dominio (DDD) propone un modelado basado en la realidad de negocio con relación a sus casos de uso. En el contexto de la creación de aplicaciones, DDD hace referencia a los problemas como dominios. Describe áreas con problemas independientes como contextos delimitados (cada contexto delimitado está correlacionado con un microservicio) y resalta un lenguaje común para hablar de dichos problemas. También sugiere muchos patrones y conceptos técnicos, como entidades de dominio con reglas de modelos enriquecidos (no modelos de dominio anémico), objetos de valor, agregados y raíz agregada (o entidad raíz) para admitir la implementación interna.\cite{ddd_dotnet}
-
-DDD es capaz de adaptarse a diversos tipos de arquitectura, para el software que nos envuelve se emplea una arquitectura por capas (Layered Architecture). Este enfoque es, sin lugar a dudas, una de los más empleados hoy en día. Esta impone una estructura y un acceso restringido a cada capa; dígase: dominio, aplicación, infraestructura y presentación. Las capas surgen para garantizar la separación de las responsabilidades, en otras palabras: cada una se encarga de gestionar cosas específicas. Una capa superior puede acceder a las capas inferiores, pero a la inversa no es posible.
-
-Muchos autores consideran o relacionan este enfoque con Arquitectura Hexagonal (Hexagonal Architecture), también conocida como: Puertos y Adaptadores; donde los puertos son interfaces y los Adaptadores son las implementaciones de estas. A modo práctico, se puede entender como una aquitectura por capas donde el principo de Inversión de Dependencias fue aplicado, por lo que, la capa de dominio se vuelve la capa central del sistema y no "depende" de ninguna otra capa.
+Para el software que nos envuelve se emplea una arquitectura por capas (Layered Architecture), centrada en DDD. Este enfoque es, sin lugar a dudas, una de los más empleados hoy en día. Impone una estructura y un acceso restringido a cada una de las estructuras del código; dígase: dominio, aplicación, infraestructura y presentación; las cuáles se encargan de la separación de las responsabilidades, en otras palabras: de gestionar cosas específicas.
 
 \begin{itemize}
 	\item Dominio: Gestiona todo lo referente a la lógica que involucra las entidades descritas en las secciones previas (\ref{sec:entities}). Es la capa fundamental dentro de DDD.
@@ -279,16 +284,7 @@ Muchos autores consideran o relacionan este enfoque con Arquitectura Hexagonal (
 \end{figure}
 
 
-Los principios \textit{SOLID} abordados por Robert C. Martin (autor de diversos libros como Clean Code y Clean Arquitecture) se interaron seguir a través de toda la implementación. No resulta llamativo, comentar acerca de SOLID en este documento, solamente a modo de referencia se pretende mostrar los nombres detrás de SOLID.\cite{solid_medium}
-\begin{itemize}
-	\item \textbf{S}: Single-Responsibility Principle.
-	\item \textbf{O}: Open-Closed Principle.
-	\item \textbf{L}: Liskov Substitution Principle.
-	\item \textbf{I}: Interface Segregation Principle.
-	\item \textbf{D}: Dependency Inversion Principle.
-\end{itemize}
-
-\nocite{thesis_joel}
+Los principios \textit{SOLID} abordados por Robert C. Martin (autor de diversos libros como Clean Code y Clean Arquitecture) se interaron seguir a través de toda la implementación.\cite{solid_medium}
 
 
 
