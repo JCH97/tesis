@@ -7,18 +7,12 @@ En una primera aproximación a la descripción de la implementación ofrecida, s
 
 Los objetivos que se persiguen se encuentran descritos además, en las primeras secciones del documento, ya que resulta de notable importancia tenerlos claros para lograr obtener un resultado que cuente con la mayor calidad posible y que logre cubrir todos las necesidades y carencias de la facultad en este aspecto de la gestión del horario. 
 
-En el primer capítulo se plasmaron además una serie de convenciones y estilos para describir todas las figuras y gráficos que se muestran. Esto hace posible que se logre una mayor comprensión de todos los aspectos abordados dentro del documento y con ello garantizar que sea entendible por todo tipo de lectores, tanto expertos en el tema como usuarios comunes interesados en el mismo.
-
 El tema de la gestión de horarios para instituciones educacionales ha sido abordado por diversos autores; previo a la confección del software se realizó el análisis de las aplicaciones de mayor relevancia. En el capítulo 2 se exponen las conclusiones a las que se arribó luego del análisis, lo que contribuyó además a mostrar la utilidad de una aplicación propia que reflejara verdaderamente los intereses de la facultad.
 
-Uno de los temas más novedosas o de mayor relevancia fue el manejo de restricciones, así como la incoprarción del concepto de felicidad del sistema a través del cumplimiento (o no) de estas. Una restricción, conceptualmente, se compone de un conjunto de condiciones y otro de requerimientos.  Las restricciones no otorgan felicidad por sí solas a ninguna entidad del sistema, son solamente una plataforma para representar la relación entre condiciones y requerimientos.Una condición se compone por tres elementos: un atributo \textit{A} en primer lugar; y en función de este, un operador \textit{O} y un valor \textit{V}. A partir de varias condiciones es posible definir además, grupos de
-condiciones. 
+Uno de los temas más novedosas o de mayor relevancia fue el manejo de restricciones, así como la incoprarción del concepto de felicidad del sistema a través del cumplimiento (o no) de estas. Una restricción, conceptualmente, se compone de un conjunto de condiciones y otro de requerimientos.  Las restricciones no otorgan felicidad por sí solas a ninguna entidad del sistema, son solamente una plataforma para representar la relación entre condiciones y requerimientos.
+Una condición se compone por tres elementos: un atributo \textit{A} en primer lugar; y en función de este, un operador \textit{O} y un valor \textit{V}. A partir de varias condiciones es posible definir además, grupos de condiciones. 
 
-Por otro lado cada requerimiento está formado, entre otras cosas, por una serie de atributos base, dígase por ejemplo: la prioridad y el modificador temporal. El primero representa el nivel de felicidad que  le otorga al usuario - y posteriormente al sistema - el cumplimiento de este requerimiento; mientras que el segundo hace referencia al tiempo en el que será evaluado el cumplimiento de la restricción. Los métodos y fórmulas definidos para el cálculo de la felicidad, así como su respectiva explicación, se detallan también en este capítulo.
-
-Los próximos dos capítulos están relacionados con el enfoque de la solución ofrecido y los detalles de implementación. Para abordar el tema de los enfoques de solución se ofrece una descripción de cada una de las entidades del sistema, resaltando en secciones específicas las más importantes dentro de estas: turnos de clase y manejo de restricciones. En este capítulo se incluye también un diseño del modelo entidad-relación (MERX); que muestra como interactúan dichas entidades dentro de la base de datos. Debido a que el modelado del software es independiente del framework y lenguaje empleado, se ofrece también una descripción de la arquitectura y demás aspectos relacionados con la misma. 
-
-En el último capítulo se aborda todo lo referente a las tecnologías empleadas y la razón de esa selección. Existe una sección dedicada a la aplicación visual, así como aspectos relevantes para el proceso de autenticación, sistema de reportes, despliegue de la infraestructura a producción a través de docker y el manejo de los usuarios y permisos; estos últimos descritos a través de enteros, auxiliándonos del sistema binario. 
+Descripciones de todos los aspectos relacionados con los detalles de la implementación ofrecida y el enfoque de solución son abordados también en el documento.
 
 \section{Cumplimiento de objetivos}
 
@@ -38,11 +32,9 @@ Para corroborar además el cumplimiento de estos aspectos, se realizó la creaci
 
 Usando como base el trabajo realizado, la experiencia previa acumulada y las opiniones de un grupo de usuarios acerca del tema que se discute se hace posible presentar una serie de recomendaciones o ideas que quizá puedan ser evaluadas en futuras tareas.
 
-\subsection{Mejoras tecnológicas}
+Una mejora sustancial que se podría aplicar a la implementación ofrecida pudiera ser, sin dudas, \textbf{la utilización de GraphQL} \cite{GraphQL_doc} como forma de comunicación entre frontend y backend. La inserción de este lenguaje de consultas podría contribuir a que se ganara en performance, pues el frontend solo consumiría de la API los datos exactos que necesite en todo momento además de ofreceer la posibilidad de solicitar recursos anidados en la misma operación. Esto se refleja inmediatamente en una optimización de la red, reduciendo las cargas útiles de HTTP y el número de peticiones. 
 
-Una mejora sustancial que se podría aplicar a la implementación ofrecida pudiera ser, sin dudas, la utilización de \textit{GraphQL} \cite{GraphQL_doc} como forma de comunicación entre front y backend. La inserción de este lenguaje de consultas podría contribuir a que se ganara en performance, pues el frontend solo consumiría de la API los datos exactos que necesite en todo momento además de ofreceer la posibilidad de solicitar recursos anidados en la misma operación. Esto se refleja inmediatamente en una optimización de la red, reduciendo las cargas útiles de HTTP y el número de peticiones. 
-
-Una de las características que también resultaría de gran utilidad sería la inclusión de tests dentro de la aplicación. La realización de pruebas al software es considerado por muchos autores, como buenas prácticas a la hora del desarrollo y sin dudas las ventajas son alentadoras; por ejemplo: \cite{testing} 
+Una de las características que también resultaría de gran utilidad sería \textbf{la inclusión de tests} dentro de la aplicación. La realización de pruebas al software es considerado por muchos autores, como buenas prácticas a la hora del desarrollo y sin dudas las ventajas son alentadoras; por ejemplo: \cite{testing} 
 \begin{itemize}
 	\item La calidad de código mejora puesto que podemos detectar errores en una etapa más temprana de desarrollo y de forma más rápida.
 	\item Puedes trabajar de una forma más ágil, ya que facilita los cambios y favorece la integración.
@@ -52,15 +44,12 @@ Una de las características que también resultaría de gran utilidad sería la 
 	\item Es posible detectar errores, antes de la puesta en producción, de nuevos cambios o implementaciones; que en un gran número de casos afectan funcionalidades realizadas previamente.
 \end{itemize}
 
-\subsection{Generación automática de horarios}
-
-Sin dudas una mejora que llamaría considerablemete la atención pudiera ser, la forma de incluir una generación automática del sistema de horarios, a partir de una previa definición de frecuencias por asignaturas y el manejo de restricciones, punto que se encuetra actualmente abordado dentro del sistema.
+Resulta notable también analizar la forma de \textbf{incluir una generación automática del sistema de horarios}, a partir de una previa definición de frecuencias por asignaturas y el manejo de restricciones, punto que se encuetra actualmente abordado dentro del sistema.
 
 Esta temática de la generación automática, fue previamente desarrollada como tema de tesis dentro de la Facultad de Matemática y Computación de la Universidad de La Habana y ponerlo en práctica aseguraría que se eliminara por completo el tiempo empleado por la persona encargada de la creación del horario; haciendo que la tarea resultara en extremo sencilla y que solo hiciera falta, en el peor de los casos, la intervención humana para quizá brindar soporte a la distribución ofrecida. 
 
-\subsection{Desarrollo de una aplicación móvil}
 
-La puesta en producción de una aplicación móvil para la visualización del horario gozaría de una aceptación considerable. Este tipo de aplicación haría posible que se garantizara un acceso más fácil al sistema  y que se mejorara aún más la experencia de usuario. Las notificaciones push son un ejemplo de ello, ya que estas proporcionan la información que se necesita, en el momento que se requiera. 
+\textbf{La puesta en producción de una aplicación móvil} para la visualización del horario gozaría de una aceptación considerable. Este tipo de aplicación haría posible que se garantizara un acceso más fácil al sistema  y que se mejorara aún más la experencia de usuario. Las notificaciones push son un ejemplo de ello, ya que estas proporcionan la información que se necesita, en el momento que se requiera. 
 
 
 

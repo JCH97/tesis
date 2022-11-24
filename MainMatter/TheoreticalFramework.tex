@@ -4,7 +4,7 @@ En el capítulo se pretende hacer alusión a las cuestiones relacionadas con la 
 
 Se ofrece una solución lo más simple posible, pero que a la vez cubra todas las necesidades y pueda manejar de la manera más adecuada todos los casos de uso que se presenten. Para el desarrollo de la aplicación se emplea un enfoque DDD (Domain Driven Design) y el uso del patrón CQRS (Command and Query Responsability Segregation); en el próximo capítulo (\ref{cap:implementation_details}) se ofrecerá una descripción detallada de tales conceptos así como la razón de la elección.
 
-Si se decidiera describir el sistema en pocas palabras (\ref{fig:horario}), se pudiera decir que el horario es una colección de turnos de clase y que un turno de clase está asociado a: un profesor, un local, una asignatura, un grupo, una fecha y un tipo (conferencia, clase práctica, laboratorio, etc); además de cada uno de estos elementos tiene sus propios atributos y relaciones entre ellos. Cada profesor puede definir restricciones sobre el sistema y el cumplimiento (o no de estas) se refleja en la felicidad del horario.
+Si se decidiera describir el sistema en pocas palabras (figura \ref{fig:horario}), se pudiera decir que el horario es una colección de turnos de clase y que un turno de clase está asociado a: un profesor, un local, una asignatura, un grupo, una fecha y un tipo (conferencia, clase práctica, laboratorio, etc); además de cada uno de estos elementos tiene sus propios atributos y relaciones entre ellos. Cada profesor puede definir restricciones sobre el sistema y el cumplimiento (o no de estas) se refleja en la felicidad del horario.
 
 \begin{figure}[h!]
 	\centering
@@ -13,13 +13,13 @@ Si se decidiera describir el sistema en pocas palabras (\ref{fig:horario}), se p
 	\label{fig:horario}
 \end{figure}
 
-El usa de esta herramienta y del sistema de horarios en general necesita de un fujo de trabajo que permita en cada momento contar con los datos necesarios para efectuar los pasos correspondientes.
+El uso de esta herramienta y del sistema de horarios en general necesita de un fujo de trabajo que permita en cada momento contar con los datos necesarios para efectuar los pasos correspondientes.
 
 \begin{itemize}
 	\item Introducción de los datos administrativos: se actualiza el listado de profesores, locales, asignaturas, grupos, facultades y universidades.
 	\item Definición de prioridades dentro de los profesores: a la hora de crear un profesor(o en la edición de este) se hace posible agregar(modificar) el entero que representa la prioridad del mismo. Por defecto la prioridad de un profesor se fija en 1.
 	\item Definición de restricciones: los profesores o el administrador del sistema, pueden agregar condiciones sobre la distribución del horario. Para cada restricción además se define la prioridad que tiene. 
-	\item Generación de reportes: obtención de un archivo en formato \textit{Excel} que haga posible la distribución del sistema y la posible visualización del mismo de manera off-line.
+	\item Generación de reportes: obtención de un archivo en formato \textit{Excel} que haga posible la distribución del sistema y la posible visualización del mismo de manera offline.
 	\item Gestión de semestres y semanas: habilidad de definir los semestres, dígase fecha de inicio y finalización del mismo. Las semanas se crean de forma automática una vez definido el semestre.
 	\item Visualización en diversas modalidades: posibilidad de obtener vistas agrupadas por diferentes condiciones; dígase: vistas diarias, semanales, mensuales y por recursos.
 	\item Modificación, eliminación y edición de los turnos de clase: tarea principal del sistema.
@@ -30,13 +30,13 @@ El usa de esta herramienta y del sistema de horarios en general necesita de un f
 
 Para lograr una mayor comprensión y garantizar por tanto que sea entendido el proceso de modelación del problema; se hace necesario presentar, en primera instancia, una descripción de cada una de las entidades que se usan, así como breves datos de utilidad acerca de estas.
 
-\textbf{Universidad}: Garantizar que el software presentado sea capaz de funcionar en el mayor número de escenarios. Esta entidad es considerada la raíz, en el grafo que representa la relaciones entre todas; es decir para describir cualquier gestión o para proceder a la confección del horario se hace necesario la previa definición de la universidad. Es válido notar, que en la mayoría de los casos se manejará solamente  una universidad.
+\textbf{Universidad}: Garantizar que el software presentado sea capaz de funcionar en el mayor número de escenarios. Esta entidad es considerada la raíz, en el grafo que representa la relaciones entre todas; es decir, para describir cualquier gestión o para proceder a la confección del horario se hace necesario la previa definición de la universidad. Es válido notar, que en la mayoría de los casos se manejará solamente  una universidad.
 
 \textbf{Facultad}: Maneja todas las facultades presentes dentro de la universidad. La facultad es la encargada de manejar las carreras, así como los locales del sistema. Cada departamento está asociado a una facultad.
 
 \textbf{Carrera}: Agrupa todas las carreras que puedan existir dentro de una facultad. Ofrece una forma de manejar además conjuntos de grupos, profesores y asignaturas.
 
-\textbf{Departamento}: Es la forma más general de agrupar los conjuntos de profesores. Cada departamento pertenece además a una facultad específica. Cada departamento está contenido dentro de una facultad.
+\textbf{Departamento}: Es la forma más general de agrupar los conjuntos de profesores. Cada departamento pertenece además a una facultad específica.
 
 \begin{figure}[h!]
 	\centering
@@ -45,7 +45,7 @@ Para lograr una mayor comprensión y garantizar por tanto que sea entendido el p
 	\label{fig:department_relation}
 \end{figure}
 
-\textbf{Asignatura}: Constituye uno de los elementos principales del turno de clases, quién es en definitiva la entidad principal del sistema. Las asignaturas se muestran agrupadas por carreras. Además de cada asignatura se conoce el profesor principal que la imparte.
+\textbf{Asignatura}: Constituye uno de los elementos principales del turno de clase, quién es en definitiva la entidad principal del sistema. Las asignaturas se muestran agrupadas por carreras. Además de cada asignatura se conoce el profesor principal que la imparte.
 
 \textbf{Grupos}: Entidad que se encarga de encapsular conjuntos de estudiantes. Mantiene una relación directa con turno de clase, así como con carrera. 
 
@@ -57,35 +57,35 @@ Para lograr una mayor comprensión y garantizar por tanto que sea entendido el p
  para determinar que tipo de aula se necesita. Los tipos más comunes son las conferencias y las clases
  prácticas. Aunque en algunas ocasiones se puede definir además actividades de tipo laboratorio. Es posible generar tipos de actividades nuevas, en caso de que se considere necesario.
 
+\textbf{Local}: Elemento importante que posibilita conocer el lugar donde se impartirá el turno de clase. Es, junto a asignatura y profesor, uno de los elementos principales de un turno de clase. Por lo general a todos los turnos de clases se les asignará un local. En nuestras universidades existen diferentes tipos de locales: salones de conferencia, aulas, laboratorios, anfiteatros, etc. En este sistema los locales se modelaron pertenecientes a una facultad. Cada uno de los locales se define a partir de un “tipo de local” y esta información es utilizada en algunos de los algoritmos que se encargan del manejo de las restricciones.
+
 \textbf{Profesores}: Es una de las entidades de mayor importancia dentro del sistema. Ofrece una vía para asegurar el manejo de todo lo referente a los profesores del centro. Son considerados usuarios especiales o de más relevancia, pues pueden interactuar directamente con el sistema de horarios, imponiendo restricciones o condiciones sobre el mismo. Todos los profesores están agrupados por departamentos. Además cada profesor, puede establecerse como responsable de una asignatura y es posible definir prioridades sobre estos.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.75\linewidth]{images/Chapter 2/teacher_relation}
-	\caption{Relación de profesor con usuario, asignatura, facultad, turno de clase y departamento }
+	\caption{Relación entre entidades}
 	\label{fig:teacher_relation}
 \end{figure}
 
-\textbf{Local}: Elemento importante que posibilita conocer el lugar donde se impartirá el turno de clase. Es, junto a asignatura y profesor, uno de los elementos principales de un turno de clase. Por lo general a todos los turnos de clases se les asignará un local. En nuestras universidades existen diferentes tipos de locales: salones de conferencia, aulas, laboratorios, anfiteatros, etc. En este sistema los locales se modelaron pertenecientes a una facultad. Cada uno de los locales se define a partir de un “tipo de local” y esta información es utilizada en algunos de los algoritmos que se encargan del manejo de las restricciones.
+\textbf{Turno de clase}: Es la entidad fundamental del sistema. Maneja todo lo relacionado con las lecciones que se impartirán en cada uno de los días del semestre, por su imporancia se dedicará la sección \ref{sec:classes} al tratamiento de esta en específico.
 
-\textbf{Turno de clase}: Es la entidad fundamental del sistema. Maneja todo lo relacionado con las lecciones que se impartirán en cada uno de los días del semestre, por su imporancia se dedicará la sección \ref{sec:classes} al tratamiento de esta entidad en específico.
-
-\textbf{Restricciones}: Entidad que se encarga de manejar las restricciones o condiciones que los profesores y administradores del sistema pudieran imponer sobre el horario. Las restricciones se describen por medio de varios modelos, uno por cada tipo de restricción manejada. Más adelante se dedicará una sección a la descripción detallada de cada uno de los tipos de restricciones manejados.
+\textbf{Restricciones}: Entidad que se encarga de manejar las restricciones o condiciones que los profesores y administradores del sistema pudieran imponer sobre el horario. Las restricciones se describen por medio de varios modelos, uno por cada tipo de restricción manejada. Más adelante se dedicará una sección a la descripción detallada de cada uno de los tipos de restricciones manejadas.
 
 \textbf{Usuarios}: Se encarga de gestionar todo lo referente a los usuarios dentro de la aplicación. Está permitido que cualquier usuario realice registro dentro de la misma, pero solamente el administrador del sistema puede determinar cuáles usuarios son profesores y por tanto, que posean un permiso específico de creación de restricciones. Para un usuario registrado sin permisos, solo es posible la visualización del sistema, cerrando toda forma de modificación o creación de nuevas entidades dentro del mismo. Un usuario puede estar relacionado, a lo sumo, con un profesor. 
 
-\textbf{Reportes}: Módulo que posibilita la obtención de un documento en formato \textit{Excel} que puede ser útil para la posterior distribución del horario, o para la revisión del mismo de manera off-line. El documento presenta una serie de páginas: una por cada grupo descrito en el horario y una extra que meneja una representación por locales, es decir, la disponibilidad de los mismos durante todo el semestre. En cada página se encuentra descrito el horario por semanas físicas y además se ofrece una leyenda con la descripción de los turnos de clase así la hora de comienzo y finalización de los mismos.\\
+\textbf{Reportes}: Módulo que posibilita la obtención de un documento en formato \textit{Excel} que puede ser útil para la posterior distribución del horario, o para la revisión del mismo de manera offline. El documento presenta una serie de páginas: una por cada grupo descrito en el horario y una extra que maneja una representación por locales, es decir, la disponibilidad de los mismos durante todo el semestre. En cada página se encuentra descrito el horario por semanas físicas y además se ofrece una leyenda con la descripción de los turnos de clase así como la hora de comienzo y finalización de los mismos.\\
 
 Cada entidad posee un conjunto de atributos base; por medio de la herencia se logra plasmar esto a la hora de realizar la implementación. 
 
-Todas las entidades del sistema heredan de \texttt{DomainEntity}, que no es más que una \textit{clase abstracta} con un constructor privado y una definición específica de un método \textit{equals}. Esta clase base cuenta además con las propiedades base antes mencionadas. Dichas propiedades son:
+Todas las entidades del sistema heredan de \texttt{DomainEntity}, que no es más que una \textit{clase abstracta} con un constructor privado y una definición específica de un método \textit{equals}. Esta clase está descrita además por una serie de propiedades base:
 
 \label{props:base}
 \begin{itemize}
 	\item \textsl{Nombre completo}: Propiedad de tipo texto que almacena el nombre en formato largo del objeto que se esté referenciando en ese momento. 
 	\item \textsl{Nombre reducido}: Propiedad de tipo texto que almacena el nombre en formato corto del objeto que se esté referenciando en ese momento. 
-	\item \textsl{Descripción}: Propiedad de tipo texto que contiene una descripción, que se considere conveniente presentar, acerca del objet que se esté referenciando en ese momento. Esta pripiedad en puede tomar valores nulos.
-	\item \textsl{Prioridad}: Propiedad de tipo numérico que almacena la prioridad que pudiera tener un objeto (o entidad) sobre otro en el sistema. Esta propiedad es utilizada principalemte en el cálculo de la \textit{felicidad del sistema}.
+	\item \textsl{Descripción}: Propiedad de tipo texto que contiene detalles, acerca del objeto que se esté referenciando en ese momento. Esta propiedad puede tomar valores nulos.
+	\item \textsl{Prioridad}: Propiedad de tipo numérico que almacena la prioridad que pudiera tener un objeto (o entidad) sobre otro, en el sistema. Es utilizada principalemte en el cálculo de la \textit{felicidad del sistema}.
 
 \end{itemize}
 
@@ -107,9 +107,9 @@ El siguiente modelo propone describir las relaciones existentes entre todas las 
 \section{Turno de Clase}
 \label{sec:classes}
 
-El \textit{turno de clases} es la entidad fundamental que compone todo sistema de horarios. Como aspecto común a la mayoría de los turnos de clases en universidades cubanas se tiene que estos tienen una duración de 90 minutos y que se pueden clasificar en dos tipos básicos: conferencias y clases prácticas.
+El \textit{turno de clases} es la entidad fundamental que compone todo sistema de horarios. Como aspecto común a la mayoría de los turnos de clase (de las universidades cubanas) se tiene que estos cuentan una duración de 90 minutos y que se pueden clasificar en dos tipos básicos: conferencias y clases prácticas.
 
-En la Universidad de La Habana se estila a separar el día en dos secciones: mañana y tarde y que cada sección esté compuesta por tres turnos de clases, es válido notar que esto se realiza por una especie de convenio ya preestablecido y que el sistema cuenta con las herramientas para variar este funcionamiento y posibilitar, por tanto, la modificación de los mismos. 
+En la Universidad de La Habana se estila a separar el día en dos secciones: mañana y tarde, y que cada sección esté compuesta por tres turnos de clase. Es válido notar que esto se realiza por una especie de convenio ya preestablecido, pero el sistema cuenta con las herramientas para variar este funcionamiento haciendo posible, por tanto, la modificación de los mismos. 
 
 Un turno de clases está compuesto por los siguientes atributos:
 \begin{itemize}
@@ -117,23 +117,59 @@ Un turno de clases está compuesto por los siguientes atributos:
 	\item \textit{Inicio}: marca la hora de inicio del turno de clase.
 	\item \textit{Finalización}: marca la hora de finalización del turno.
 	\item \textit{Id de recurso}: referente al \texttt{id} del local; se utiliza mayormente en el manejo de la vista asociada a los recursos.
-	\item \textit{Semana}: referente a la semana de creación del turno de clase.
-	\item \textit{Profesores}: colección de elementos que representan los profesores encargados del turno de clases; notar que al menos siempre. se contará con un profesor responsable, que se toma de la asignatura referente al turno.\item \textit{Local}: referente al local donde se impartirá el turno de clase.
+	\item \textit{Semana}: referente a la semana en que se impartirá el turno de clase.
+	\item \textit{Profesores}: colección de elementos que representan los profesores encargados de impartir las clases; notar que al menos siempre se contará con un profesor responsable, que se toma de la asignatura referente al turno.
+	\item \textit{Local}: referente al local donde se impartirá el turno de clase.
 	\item \textit{Asignatura}: referente a la asignatura.
 	\item \textit{Tipos de clase}: referente al tipo de clase (conferencia, clase práctica, laboratorio).
 	\item \textit{Grupo}: referente al grupo.
 \end{itemize}
 
-Es común notar que en muchos sistemas de horarios, por no decir en todos, contamos con la misma frecuencia de turnos todas las semanas, o a lo sumo en intervalos de quince días. Para ganar en usabilidad y por tanto mejorar la experiencia de usuario se presenta un enfoque que permite crear turnos en una frecuencia específica; dicho en otras palabras y mostrado a través de un ejemplo: si tenemos, dado el caso, que el turno de Matemática Discreta de 2$^{do}$ de Computación se realiza los martes de todas las semanas, en la aplicación no es necesario recorrer todos los martes del semestre e ir creandolos uno por uno, pues se ofrecer una especie de configuración y el sistema se encarga de la posterior creación de cada uno. De cualquier forma también  es posible la creación de turnos individuales sin necesidad de crearlos en serie.
+Es común notar que en muchos sistemas de horarios, por no decir en todos, contamos con la misma frecuencia de turnos todas las semanas, o a lo sumo en intervalos de quince días. Para ganar en usabilidad y por tanto mejorar la experiencia de usuario se presenta un enfoque que permite crear turnos en una frecuencia específica; dicho en otras palabras y mostrado a través de un ejemplo: si tenemos, dado el caso, que el turno de Matemática Discreta de 2$^{do}$ de Computación se realiza los martes de todas las semanas, en la aplicación no es necesario recorrer todos los martes del semestre e ir definiéndolos uno por uno. Para ello se ofrece una especie de configuración y el sistema se encarga de la posterior creación de cada uno. Este enfoque se maneja a través del concepto de \textit{turnos en serie}.
 
-El manejo de turnos en serie nos crea una relación entre los mismos, o sea, los turnos de una misma serie están relacionados entre ellos, esto hace posible que la edición y eliminación de cualquier turno de la serie influya también en el resto de estos turnos. Estas operaciones son además flexibles, dado el hecho de que también es posible modificar inidividualmente los turnos de cualquier serie sin afectar al resto.
+\begin{dfn}
+	Turnos en serie: habilidad que hace posible la replicación de un turno a través de todo el semestre, para ello hay que contar con la previa definición de la frecuencia del mismo y los días, dentro de la semana, en que se impartirá. El turno replicado tendrá las mismas características que el original, exceptuando las fechas involucradas.
+\end{dfn}
 
-El sistema cuenta con una serie de filtros dedicados a obtener secciones del mismo. Los turnos de clase están adaptados, por tanto, a estos requerimientos. Se hace posible agregar filtros por tiempo (día-hora de inicio y finalización), así como por asignaturas, grupos, locales y tipos de clase. 
+El manejo de turnos en serie nos crea una relación entre los mismos, o sea, los turnos de una misma serie están relacionados entre ellos, esto hace posible que la edición y eliminación de cualquier turno de la serie influya también en el resto de estos turnos. Estas operaciones son además flexibles, dado el hecho de que también es posible modificar inidividualmente los turnos de cualquier serie sin afectar al resto. Una vez que turno perteneciente a una serie se modifica individualmente, este turno ya no pertenecerá más a la serie inicial y por tanto cualquier modificación que se le aplique al mismo no repercutirá en nadie más.
+
+El sistema cuenta con una serie de filtros dedicados a obtener secciones del mismo. Los turnos de clase están adaptados, por tanto, a estos requerimientos. Se hace posible agregar filtros por tiempo (día-hora de inicio y finalización), así como por asignaturas, grupos, locales, tipos de clase y facultades.
 
 \section{Manejo de restricciones}
 \label{sec:restrictions}
 
-El manejo y gestión de restricciones es un importante \textit{feature} ofrecido en el sistema. Cada profesor propone un conjunto de condiciones que se aplica a los turnos de clase, además de cada profesor se conoce la prioridad, así como la prioridad particular que le otorga a cada restricción. 
+El uso de restricciones es una de las partes más llamativas de este sistema, la idea detrás del manejo e implementación de las mismas surge a través del trabajo de diploma desarrollado por el estudiante \textit{Joel Rey Travieso Sosa} \cite{thesis_joel} perteneciente a la Facultad de Matemática y Computación de La Universidad de La Habana.
+
+El análisis y la gestión de las restricciones trajo consigo la clasificación en diferentes grupos:
+\begin{itemize}
+	\item \textit{Asignación de recursos}: Cuando un recurso debe ser asignado a otro recurso de distinto tipo o a cierto evento.
+	\item \textit{Asignación de tiempo}: Cuando un evento o recurso debe asignarse a una fecha.
+	\item \textit{Restricciones de tiempo entre eventos}: Cuando un evento mantiene una relación de tiempo con otro.
+	\item \textit{Solapamiento de eventos}: Cuando un grupo de eventos comparte un mismo intervalo de tiempo.
+	\item \textit{Coherencia entre eventos}: Intentar producir horarios más organizados y convenientes.
+	\item \textit{Capacidad}: Algunos de los recursos tienen capacidades de uso que no pueden ser vulneradas.
+	\item \textit{Continuidad}: Cuando se intenta producir horarios con determinadas características constantes o muy predecibles.
+	
+\end{itemize}
+
+Además se detectaron cinco grupos fundamentales para clasificar las condiciones o requerimientos del problema:
+\begin{itemize}
+	\item \textit{Restricciones unarias}: aquellas que involucran un sólo evento, como por ejemplo, las clases de un curso no pueden ser programadas un día lunes.
+	\item \textit{Restricciones binarias}: aquellas que involucran dos eventos. Un ejemplo típico son las restricciones de topes de horarios para un curso que requiere un mismo recurso: profesor, sala de clases, etc
+	\item \textit{Restricciones de capacidad}: las que se imponen al asignar cursos a salas de clase con capacidad suficiente.
+	\item \textit{Restricciones de separación de eventos}:  aquellas que requieren que las actividades estén separadas o siguiendo algún patrón en el tiempo. Algunos ejemplos son las impuestas por políticas de la institución de respetar asignaciones de horarios en patrones predefinidos o las condiciones de no existencia de horas intermedias vacías.
+	\item \textit{Restricciones asociadas a los  agentes}: las limitaciones en los horarios asignados para cumplir con las preferencias de los profesores.
+\end{itemize}
+
+En la implementación que se ofrece se manejan 4 tipos de restricciones fundamentales, que cubren la descripción antes mencionada.
+\begin{itemize}
+	\item Restricción de requerimiento de cuenta simple.
+	\item Restricción de requerimiento de cuenta de condiciones.
+	\item Restricción de requerimiento de distribución de atributos.
+	\item Restricción de requerimiento relacional.
+\end{itemize}
+
+Cada profesor propone un conjunto de condiciones que se aplica a los turnos de clase, además de cada profesor se conoce la prioridad, así como la prioridad particular que le otorga a cada restricción. 
 Con el objectivo de expresar un concepto un poco más formal: 
 \begin{dfn}[Restricción]
 	Forma por medio de la cuál los usuarios (principalmente los profesores) expresan sus consideraciones acerca de los elementos que determinan la calidad de cualquier horario propuesto; ya sea en sentido general o personal.
@@ -168,16 +204,16 @@ Ejemplos de grupos de condiciones:
 \begin{itemize}
 	\item "Ser lunes". Una condición que involucra un solo operador lógico también es considerado un grupo de condiciones.
 	\item (Turnos de Matemática Discreta) (del martes). 
-	\item (Turnos de Matemática Discreta o del Matemática Numérica) (del martes).
+	\item (Turnos de Matemática Discreta o de Matemática Numérica) (del martes).
 \end{itemize}
 
 \paragraph{Intervalo.}
-Ofrece una forma de obtener una separación del  conjunto de turnos en subconjuntos, cada uno conteniendo los turnos correspondientes a un período de tiempo diferente, en cada caso de tamaño \textit{intervalo}, salvo, quizás, el último, en caso de que el curso no pueda ser dividido exactamente en un número 
-entero de intervalos de tamaño \textit{intervalo}. El objetivo detrás de esta separación del conjuto de turnos en intervalos, en segregar aún más la evaluación; pues, por ejemplo, supogamos que estamos analizando una restricción sobre $X$ y que: $\exists y \in X $ tal que para $y$ la restricción se incumple, entonces resultaría un poco antiintuitivo decir que la restricción se incumple, solo porque fallara en un turno, por ello si consideramos que $\text{interval} = 7$ (análisis semanal), entonces el turno entraría solo en una semana de las analizadas y por tanto la restricción no se marcaría en su totalidad como incumplida, lo que influiría positivamente en la felicidad del sistema.
+Ofrece una forma de obtener una separación del  conjunto de turnos en subconjuntos, cada uno conteniendo los turnos correspondientes a un período de tiempo diferente, en cada caso de tamaño \textit{intervalo}, salvo quizás, el último, en caso de que el curso no pueda ser dividido exactamente en un número 
+entero de intervalos de tamaño \textit{intervalo}. El objetivo detrás de esta separación del conjuto de turnos en intervalos, en segregar aún más la evaluación; pues, por ejemplo, supogamos que estamos analizando una restricción sobre $X$ y que: $\exists y \in X $ tal que para $y$ la restricción se incumple, entonces resultaría un poco antiintuitivo decir que la restricción se incumple, solo porque fallara en un turno, por ello si consideramos que $intervalo = 7$ (análisis semanal), entonces el turno entraría solo en una semana de las analizadas y por tanto la restricción no se inclumpliría en su totalidad, lo que influiría positivamente en la felicidad del sistema.
 
 \paragraph{Prioridad.}
 \label{def:priority}
-Establece la prioridad de la restricción. El usuario creador de la restricción (profesor o administrador del sistema) deberá establecer la priridad o cuán importante es la restricción que se está definiendo. Por defecto, si el valor no se proporciona, se fija en 1. Este valor se utilizará posteriormente para el cálculo de la \textit{felicidad} del sistema. La utilidad del mismo radica en gestionar de alguna manera una especie de jerarquía y posibilitar, por tanto un orden, para lograr ser lo más semenjante posible a la vida real.
+Establece la prioridad de la restricción. El usuario creador de la restricción (profesor o administrador del sistema) deberá establecer la priridad o cuán importante es la restricción que se está definiendo. Por defecto, si el valor no se proporciona, se fija en 1. Este valor se utilizará posteriormente para el cálculo de la \textit{felicidad} del sistema. La utilidad del mismo radica en gestionar de alguna manera una especie de jerarquía y posibilitar, por tanto, un orden para lograr ser lo más semenjante posible a la vida real.
 
 \paragraph{Descripción.}
 Este campo se presenta de manera obligatoria a la hora de la creación de nuevas restricciones. Es un forma de representar con palabras lo que se pretende crear y hacer posible por tanto la rápida comprensión e interpretación de la misma. 
@@ -196,18 +232,25 @@ El conjuto de campos definidos por cada tipo de restricción varía en dependenc
 
 \subsection{Tipos de restricciones}
 
-Es posible manejar o declarar diversos timpos de restricciones, dichos tipos ya fueron enunciados en las secciones previas (\ref{state_of_art:restrictions}) de este documento.
+Es posible manejar o declarar diversos timpos de restricciones, dichos tipos ya fueron enunciados en las secciones previas (\ref{sec:restrictions}) de este documento.
 
-\paragraph{Restricción de requerimiento de cuenta simple.}  Esta restricción se refiere al número de turnos que han satisfecho las 
- condiciones fijadas inicialmente. El usuario debe configurar el operador de comparación \textit{O} a aplicar y el valor \textit{V} con el cual comparar. La restricción se cumple si la cantidad de turnos que satisfacen las condiciones mantiene una relación \textit{O} con \textit{V}. El valor de \textit{V} puede ser numérico, porcentual o bien fraccionario  con respecto al total de turnos que pasan la etapa de las condiciones.
+\paragraph{Restricción de requerimiento de cuenta simple.}  Esta restricción se refiere al número de turnos que han satisfecho las condiciones fijadas inicialmente. El usuario debe configurar el operador de comparación \textit{O} a aplicar y el valor \textit{V} con el cual comparar. La restricción se cumple si la cantidad de turnos que satisfacen las condiciones mantiene una relación \textit{O} con \textit{V}. El valor de \textit{V} puede ser numérico, porcentual o bien fraccionario  con respecto al total de turnos que pasan la etapa de las condiciones.
+ 
+Referente a este tipo de restricción se puede tomar como ejemplo: todos los turnos de Matemática Numérica de 3$^{ro}$CC deben realizarse los lunes. 
+ 
 
-\paragraph{Restricción de requerimiento de cuenta de condiciones.} Este requerimiento se refiere a qué parte del conjunto de turnos que ha 
- satisfecho las condiciones previas, cumple también un bloque de condiciones adicionales, y cuenta además con el operador de comparación \textit{O} a aplicar y el valor \textit{V} con el cual comparar. El requerimiento se cumple si la cantidad de turnos que satisfacen las condiciones iniciales y satisfacen simultáneamente otras que se han configurado, mantiene una relación \textit{O} con \textit{V}.
+\paragraph{Restricción de requerimiento de cuenta de condiciones.} Este requerimiento se refiere a qué parte del conjunto de turnos que ha satisfecho las condiciones previas, cumple también un bloque de condiciones adicionales, y cuenta además con el operador de comparación \textit{O} a aplicar y el valor \textit{V} con el cual comparar. El requerimiento se cumple si la cantidad de turnos que satisfacen las condiciones iniciales y satisfacen simultáneamente otras que se han configurado, mantiene una relación \textit{O} con \textit{V}.
+
+Como ejemplo de este tipo de restricción se puede considerar: todos los turnos de Matemática Discreta de CC tienen que ser lunes o viernes.
 
 \paragraph{Restricción de requerimiento de distribución de atributos.} Este requerimiento se refiere a la cantidad de valores distintos que puede tomar determinado atributo en el conjunto de turnos que pasa la etapa de condiciones. El usuario configura, además del atributo \textit{A}, el operador de comparación \textit{O} y el valor \textit{V}. El requerimiento se cumple si la cantidad de valores que toma el atributo \textit{A} en el conjunto de turnos que cumple las condiciones previas mantiene una relación \textit{O} con  \textit{V}. En este caso el valor de \textit{V} debe ser numérico.
 
-\paragraph{Restricción de requerimiento relacional.} Este requerimiento se refiere a la relación que mantiene el conjunto de turnos que cumplen las condiciones previas con otro que cumple otro grupo de condiciones. En este caso se requiere que el usuario añada un segundo grupo de condiciones que filtrarán el segundo conjunto de turnos, un atributo \textit{A} y un operador booleano de conjuntos \textit{O} que define la relación entre los valores de \textit{A}
-en el primer conjunto y el segundo. El requerimiento se cumple si el conjunto de valores que toma \textit{A} en el primer conjunto de turnos mantiene una relación \textit{O} con el conjunto de valores que toma \textit{A} en el segundo conjunto.
+Un ejemplo mediante el cuál se evidencia esta restricción pudiera ser: el profesor \textit{X} imparte las asignaturas de Sistema Operativo y Redes en CC, pero no se puede dar la situación de que tenga que dar las dos asignaturas en la misma semana; dicho en otras palabras, si en la semana \textit{A} se le ponen turnos de Sistema Operativo, entonces no se le deben asignar turnos de Redes.
+
+\paragraph{Restricción de requerimiento relacional.} Este requerimiento se refiere a la relación que mantiene el conjunto de turnos que cumplen las condiciones previas con otro que cumple otro grupo de condiciones. En este caso se requiere que el usuario añada un segundo grupo de condiciones que filtrarán el segundo conjunto de turnos, un atributo \textit{A} y un operador booleano de conjuntos \textit{O} que define la relación entre los valores de \textit{A} en el primer conjunto y el segundo. El requerimiento se cumple si el conjunto de valores que toma \textit{A} en el primer conjunto de turnos mantiene una relación \textit{O} con el conjunto de valores que toma \textit{A} en el segundo conjunto.
+
+Un ejemplo que describe la restricción puede ser: el profesor \textit{X} imparte clases de las asignaturas de Sistema Operativo y Redes para la carrera de CC, entonces se quiere que de ser posible, las asignaturas se puedan impartir el mismo día; es decir, cada vez que tenga un turno de Sistema Operativo se quiere que también imparta su turno de Redes.
+
 
 \begin{figure}[h!]
 	\centering
@@ -253,38 +296,12 @@ Para calcular la felicidad total del sistema se emplea el cómputo de las felici
 
 \noindent Donde se tiene que:
 \begin{itemize}
-	\item $f_p \in [0, 1]$: Felicidad del profesor m-ésimo.
+	\item $f_m \in [0, 1]$: Felicidad del profesor m-ésimo.
 	\item $p_m$: Prioridad del profesor m-ésimo.
 	\item $m \in \mathbb{N}$: Cantidad de profesores.
 \end{itemize}
 
 
-\section{Arquitectura}
-
-El  sistema presentado encierra una gran lógica de negocio y encontrar una forma aceptada de representar el mismo puede resultar, en muchos casos, de gran dificultad.
-
-Para asegurar el correcto diseño de la aplicación, su posible extensión y adición de nuevas features (características), se hizo neceario utilizar una arquitectura, quizá un poco compleja, pero que permitiera enfocar todos los casos de uso que puedan surgir. 
-
-DDD o Domain Driven Design (por su siglas en inglés) es un enfoque para el desarrollo de software con necesidades complejas mediante una profunda conexión entre la implementación y los conceptos del modelo y núcleo del negocio.\cite{ddd_wiki} El diseño guiado por el dominio (DDD) propone un modelado basado en la realidad de negocio con relación a sus casos de uso. En el contexto de la creación de aplicaciones, DDD hace referencia a los problemas como dominios. Describe áreas con problemas independientes como contextos delimitados (cada contexto delimitado está correlacionado con un microservicio) y resalta un lenguaje común para hablar de dichos problemas. También sugiere muchos patrones y conceptos técnicos, como entidades de dominio con reglas de modelos enriquecidos (no modelos de dominio anémico), objetos de valor, agregados y raíz agregada (o entidad raíz) para admitir la implementación interna.\cite{ddd_dotnet}
-
-Para el software que nos envuelve se emplea una arquitectura por capas (Layered Architecture), centrada en DDD. Este enfoque es, sin lugar a dudas, una de los más empleados hoy en día. Impone una estructura y un acceso restringido a cada una de las estructuras del código; dígase: dominio, aplicación, infraestructura y presentación; las cuáles se encargan de la separación de las responsabilidades, en otras palabras: de gestionar cosas específicas.
-
-\begin{itemize}
-	\item Dominio: Gestiona todo lo referente a la lógica que involucra las entidades descritas en las secciones previas (\ref{sec:entities}). Es la capa fundamental dentro de DDD.
-	\item Aplicación: Se encarga de manejar todos los casos de uso que relacionados con cada entidad. A modo de ejemplo, todo sistema cuenta con 4 casos de uso básicos, por así llamarlos: crear, leer, eliminar, editar.
-	\item Infraestructura: Maneja todo lo relacionado con el acceso a datos. Contiene los repositorios y por tanto define una especie de envoltura (wrapper) que evita que se acceda directamente a la base de datos.
-	\item Presentación: Se encarga de exponer todos los puntos de acceso a la API (Application Program Interface), así como los consumidores (consumers) que se encargan de interactuar con aplicaciones de terceros.
-\end{itemize}
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.5\linewidth]{images/Chapter 2/ddd}
-	\caption{Domain Driven Design}
-	\label{fig:ddd}
-\end{figure}
-
-
-Los principios \textit{SOLID} abordados por Robert C. Martin (autor de diversos libros como Clean Code y Clean Arquitecture) se interaron seguir a través de toda la implementación.\cite{solid_medium}
 
 
 
